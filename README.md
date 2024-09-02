@@ -1,8 +1,8 @@
 # SIHP1743 -Pre-Qualifiers-
-Social Media Forensic Tool (SMFT)
+Scrappy The Media Scrapper
 Project Description:
 
-The Social Media Forensic Tool (SMFT) automates social media account examinations for investigations. It extracts and organizes relevant data, minimizing human error and boosting efficiency.
+The Scrappy The Media Scrapper automates social media account examinations for investigations. It extracts and organizes relevant data, minimizing human error and boosting efficiency.
 
 Key Features:
 
@@ -34,28 +34,40 @@ Installation:
 
 Clone the repository:
 Bash
-git clone https://github.com/your-username/SIHP1743-Pre-Qualifiers
+```
+git clone https://github.com/mrvenom17/SIHP1743-Pre-Qualifiers-.git
+```
 Use code with caution.
 
 Create a virtual environment:
 Bash
+```
 python -m venv venv
+```
 Use code with caution.
 
 Activate the virtual environment:
 Linux/macOS:
-        source venv/bin/activate
-* Windows:bash
-venv\Scripts\activate
-4. Install dependencies:bash
-pip install -r requirements.txt
 ```   
+source venv/bin/activate
+``` 
+* Windows:bash
+```
+venv\Scripts\activate
+```
+4. Install dependencies:bash
+```
+pip install -r requirements.txt
+```
+
 
 Usage:
 
 Run the tool:
 Bash
+```   
 python main.py
+``` 
 Use code with caution.
 
 Enter the social media profile URL.
