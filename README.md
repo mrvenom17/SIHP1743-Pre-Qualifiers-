@@ -1,38 +1,69 @@
 # SIHP1743 -Pre-Qualifiers-
-Project Title: Social Media Forensic Tool (SMFT)
+Social Media Forensic Tool (SMFT)
 Project Description:
-The Social Media Forensic Tool (SMFT) is designed to automate the process of examining social media accounts for investigative purposes. By extracting and organizing relevant data, SMFT significantly reduces the risk of human error and improves efficiency.
+
+The Social Media Forensic Tool (SMFT) automates social media account examinations for investigations. It extracts and organizes relevant data, minimizing human error and boosting efficiency.
 
 Key Features:
-Automated Data Extraction: Extracts account information, post history, messaging history, media files, and social connections.
+
+Automated Data Extraction: Account info, post history, messages, media, and social connections are automatically retrieved.
 Platform-Specific Functionality: Supports Facebook, Twitter, Instagram, Telegram, WhatsApp, and Google accounts.
-Screenshot Generation: Generates screenshots of key pages and data points.
-Data Organization and Analysis: Provides keyword search, time-based filtering, and geolocation mapping.
-Cross-Platform Compatibility: Available for both Android and Windows devices.
+Screenshot Generation: Generates screenshots of crucial pages and data.
+Data Organization and Analysis: Enables keyword search, time-based filtering, and geolocation mapping.
+Cross-Platform Compatibility: Available on both Android and Windows devices.
 Technologies and Frameworks:
-Backend: Python, Django, PostgreSQL, AWS
-Data Collection: Requests, Beautiful Soup, Selenium
-AI and Machine Learning: NLTK, Gensim, TensorFlow
-Data Visualization: Matplotlib, Seaborn, Plotly
-Mobile App Development (Optional): React Native, Flutter, or Ionic
+
+Backend: Python (Django framework), PostgreSQL database, deployed on AWS cloud platform for scalability.
+Data Collection: Requests library, Beautiful Soup for web scraping, Selenium for browser automation.
+AI and Machine Learning: NLTK for natural language processing, Gensim for topic modeling, TensorFlow for deep learning.
+Data Visualization: Matplotlib, Seaborn, and Plotly for creating visualizations.
+Mobile App Development (Optional): React Native, Flutter, or Ionic can be used for mobile app development.
 Methodology:
-Our team will employ a data-driven approach to develop the SMFT. We will utilize Python, leveraging libraries like Beautiful Soup, NLTK, and TensorFlow. The tool will be deployed on a cloud platform for scalability and efficiency.
+
+The team will employ a data-driven approach using Python with libraries like Beautiful Soup, NLTK, and TensorFlow. The tool will be deployed on a cloud platform for efficiency and scalability.
 
 Project Structure:
+
+The project will be organized with the following folders:
+
 src: Contains the source code for the tool.
 data: Stores extracted data and generated reports.
 docs: Includes documentation, tutorials, and user manuals.
-tests: Contains unit and integration tests.
+tests: Contains unit and integration tests for code quality assurance.
 Installation:
-Clone the repository: git clone https://github.com/your-username/SIHP1743-Pre-Qualifiers
-Create a virtual environment: python -m venv venv
-Activate the virtual environment: source venv/bin/activate (on Windows: venv\Scripts\activate)   
-Install dependencies: pip install -r requirements.txt
+
+Clone the repository:
+Bash
+git clone https://github.com/your-username/SIHP1743-Pre-Qualifiers
+Use code with caution.
+
+Create a virtual environment:
+Bash
+python -m venv venv
+Use code with caution.
+
+Activate the virtual environment:
+Linux/macOS:
+        source venv/bin/activate
+* Windows:bash
+venv\Scripts\activate
+4. Install dependencies:bash
+pip install -r requirements.txt
+```   
+
 Usage:
-Run the tool: python main.py
+
+Run the tool:
+Bash
+python main.py
+Use code with caution.
+
 Enter the social media profile URL.
 View the generated report.
 Future Enhancements:
-Expand platform support: Include additional social media platforms.
-Improve AI capabilities: Enhance sentiment analysis, keyword extraction, and entity recognition.
-Integrate with other tools: Facilitate data sharing and analysis with existing forensic tools.
+
+Expand platform support to include additional social media platforms.
+Improve AI capabilities for sentiment analysis, keyword extraction, and entity recognition.
+Integrate with other forensic tools for data sharing and analysis.
+
+Sources and related content
