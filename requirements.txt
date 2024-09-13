@@ -3,3 +3,9 @@ time
 pyautogui
 selenium
 beautifulsoup4
+pandas
+numpy
+keras
+tensorflow
+scikit-learn
+requests
