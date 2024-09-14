@@ -1,0 +1,120 @@
+import requests
+import time
+import logging
+
+# Setup logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Step 1: Temporary Email Generation
+def get_temp_email():
+    try:
+        response = requests.get('https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1')
+        response.raise_for_status()  # Check for HTTP errors
+        email = response.json()[0]
+        logging.info(f"Generated temporary email: {email}")
+        return email
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Error generating temporary email: {e}")
+        raise
+
+# Step 2: Check the Temporary Email Inbox
+def check_email_inbox(temp_email, retries=3, delay=10):
+    login, domain = temp_email.split('@')
+    
+    for attempt in range(retries):
+        try:
+            inbox_url = f"https://www.1secmail.com/api/v1/?action=getMessages&login={login}&domain={domain}"
+            response = requests.get(inbox_url)
+            response.raise_for_status()
+            
+            emails = response.json()
+            if emails:
+                email_id = emails[0]['id']
+                email_details_url = f"https://www.1secmail.com/api/v1/?action=readMessage&login={login}&domain={domain}&id={email_id}"
+                email_content = requests.get(email_details_url).json()
+                logging.info("Email received!")
+                return email_content['body']
+            else:
+                logging.info("No email received yet, retrying...")
+        except requests.exceptions.RequestException as e:
+            logging.error(f"Error checking email inbox: {e}")
+        time.sleep(delay)  # Wait before retrying
+    return None
+
+# Step 3: Captcha Solving (2Captcha Integration)
+def solve_captcha(captcha_site_key, page_url):
+    try:
+        captcha_url = f"https://2captcha.com/in.php?key=YOUR_2CAPTCHA_API_KEY&method=userrecaptcha&googlekey={captcha_site_key}&url={page_url}"
+        captcha_response = requests.get(captcha_url)
+        if 'OK|' in captcha_response.text:
+            captcha_token = captcha_response.text.split('|')[1]
+            logging.info("CAPTCHA solved successfully!")
+            return captcha_token
+        else:
+            logging.error("CAPTCHA solving failed.")
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Error solving CAPTCHA: {e}")
+        raise
+
+# Step 4: Fake Account Creation
+import random
+import string
+import logging
+import requests
+
+# Predefined lists of names for username generation
+first_names = ['John', 'Jane', 'Michael', 'Emily', 'Chris', 'Sarah', 'David', 'Laura', 'James', 'Anna']
+last_names = ['Smith', 'Johnson', 'Brown', 'Davis', 'Miller', 'Wilson', 'Taylor', 'Anderson', 'Thomas', 'Moore']
+
+# Function to generate a random human-like username
+def generate_human_username():
+    first_name = random.choice(first_names)
+    last_name = random.choice(last_names)
+    # Optional: Add random numbers or characters to the username for uniqueness
+    random_suffix = ''.join(random.choices(string.digits, k=3))  # E.g., 3 random digits
+    username = f"{first_name}_{last_name}{random_suffix}"
+    return username
+
+def create_fake_account(platform_url, temp_email):
+    # Generate a human-like username
+    human_username = generate_human_username()
+
+    # Data for account creation
+    account_data = {
+        'email': temp_email,
+        'username': human_username,
+        'password': 'StrongPassword123!',
+        # Other necessary fields for account creation
+    }
+
+    try:
+        response = requests.post(platform_url + '/register', data=account_data)
+        if response.status_code == 200:
+            logging.info(f"Fake account created with username: {human_username} using {temp_email}")
+        else:
+            logging.error(f"Account creation failed: {response.content}")
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Error creating fake account: {e}")
+        
+# Step 5: Automating the Full Process
+def automate_fake_account_creation(platform_url, captcha_site_key):
+    try:
+        temp_email = get_temp_email()
+        create_fake_account(platform_url, temp_email)
+
+        time.sleep(10)  # Wait for email to be received
+        email_content = check_email_inbox(temp_email)
+
+        if email_content:
+            logging.info("Verification email received. Proceed with further steps.")
+            captcha_token = solve_captcha(captcha_site_key, platform_url)
+            logging.info(f"CAPTCHA solved: {captcha_token}")
+        else:
+            logging.warning("No verification email received.")
+    except Exception as e:
+        logging.error(f"Error in automation process: {e}")
+
+# Example usage for Twitter
+platform_url = 'https://twitter.com'
+captcha_site_key = 'YOUR_CAPTCHA_SITE_KEY'  # Get this from the Twitter signup page source
+automate_fake_account_creation(platform_url, captcha_site_key)
