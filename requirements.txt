@@ -9,3 +9,6 @@ keras
 tensorflow
 scikit-learn
 requests
+sqlalchemy
+flask
+faker
